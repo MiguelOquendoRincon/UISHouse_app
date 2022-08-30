@@ -66,7 +66,11 @@ class CategoriesHome extends StatelessWidget {
                               iconSize: ScreenSize.widthMultiplier * 10.0
                             )
                           ),
-                        )
+                        ),
+                        Text(
+                          "Ver más...",
+                          style: Theme.of(context).textTheme.bodyText2!
+                        ),
                       ],
                     ),
                   ),

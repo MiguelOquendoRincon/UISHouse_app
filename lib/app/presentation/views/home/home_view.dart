@@ -1,8 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:uis_house/app/core/utils/app_icons.dart';
-import 'package:uis_house/app/core/utils/screen_size.dart';
-import 'package:uis_house/app/presentation/views/home/categories_home_view.dart';
-import 'package:uis_house/app/presentation/views/home/search_bar_view.dart';
+import 'package:uis_house/app/presentation/views/index_page.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -17,111 +17,117 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  List<String> images = ["assets/images/amoblada.jpg", "assets/images/apartaestudio.jpeg", "assets/images/baño_compartido.jpg", "assets/images/baño_privado.jpg", "assets/images/sin_amoblar.jpg"];
+  static const List<Widget> _pages = <Widget>[
+  Icon(
+    Icons.call,
+    size: 150,
+  ),
+  Icon(
+    Icons.camera,
+    size: 150,
+  ),
+  Icon(
+    Icons.chat,
+    size: 150,
+  ),
+];
+  int _currentTab = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TopWelcome(),
-
-                  SizedBox(height: 40.0),
-
-                  SearchBar(),
-
-                  SizedBox(height: 40.0),
-
-                  CategoriesHome(),
-
-                  SizedBox(height: 10.0),
-
-                  Column(
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                      // 
                     children: [
-                      Text(
-                        "Últimas Publicaciones",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: ScreenSize.widthMultiplier * 5.50
-                        )
-                      ),
-
-                      const SizedBox(height: 10.0),
-
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: images.length,
-                        itemBuilder: (context, index){
-                          return Stack(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    child: Image.asset(
-                                      images[index],
-                                      height: ScreenSize.heightMultiplier * 25.50,
-                                      width: ScreenSize.widthMultiplier * 90.50,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-
-                                Column(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.topRight,
-                                      width: ScreenSize.widthMultiplier * 90.50,
-                                      // decoration: BoxDecoration(
-                                      //   color: Color(0XFFFebe32)
-                                      // ),
-                                      child: Container(
-                                        padding: EdgeInsets.all(5.0),
-                                        width: ScreenSize.widthMultiplier * 20.50,
-                                        decoration: BoxDecoration(
-                                          color: Color(0XFFFebe32),
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(10),
-                                            bottomLeft: Radius.circular(10),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          "\$250.000",
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                            color: Colors.white,
-                                            fontSize: ScreenSize.widthMultiplier * 4.2
-                                          ),
-                                        ),
-                                      )
-                                    ),
-                                    Text("Habitación sin amoblar")
-                                  ],
-                                )
-                              ],
-                          );
-
-                          
-                        },
-                      )
+                      IndexPageView(index: _currentTab),
                     ],
                   ),
-
-
-
-                ],
+                ),
               ),
-            ),
+
+              Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: SizedBox(
+                  // height: 80.0,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      topLeft: Radius.circular(10),
+                    ),
+                    
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 10.0,
+                        sigmaY: 10.0
+                      ),
+                      child: Opacity(
+                        opacity: 0.8,
+                        child: BottomNavigationBar(
+                          currentIndex: _currentTab,
+                          onTap: (int index) {
+                            setState(() {
+                              _currentTab = index;
+                            });
+                          },
+                          selectedItemColor: Colors.black,
+                          items: <BottomNavigationBarItem>[
+                            BottomNavigationBarItem(
+                              icon: AppIcons().homeIcon(
+                                color: _currentTab == 0 ? Colors.black : Colors.grey
+                              ),
+                              label: "Home"
+                            ),
+
+                            BottomNavigationBarItem(
+                              icon: AppIcons().searchIcon(
+                                color: _currentTab == 1 ? Colors.black : Colors.grey
+                              ),
+                              label: "Búscar"
+                            ),
+
+                            BottomNavigationBarItem(
+                              icon: AppIcons().newRoomIcon(
+                                color: _currentTab == 2 ? Colors.black : Colors.grey
+                              ),
+                              label: "Agregar"
+                            ),
+
+                            BottomNavigationBarItem(
+                              icon: AppIcons().settingIcon(
+                                color: _currentTab == 3 ? Colors.black : Colors.grey
+                              ),
+                              label: "Ajustes"
+                            ),
+                            
+                            BottomNavigationBarItem(
+                              icon: AppIcons().favoritesIcon(
+                                color: _currentTab == 4 ? Colors.black : Colors.grey
+                              ),
+                              label: "Favoritos"
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       );
   }
 }
+
+
+
+
 
 
 

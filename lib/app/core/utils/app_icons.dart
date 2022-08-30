@@ -15,12 +15,36 @@ class AppIcons {
     )
   );
 
+  Widget appIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
+    onPressed: onPressed,
+    iconSize: iconSize,
+    icon: SvgPicture.asset(
+      "assets/iconsSVG/app-icon.svg",
+      width: iconSize,
+      height: iconSize,
+      color: color,
+    )
+  );
+
+  Widget myAppIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
+    onPressed: onPressed,
+    iconSize: iconSize,
+    icon: SvgPicture.asset(
+      "assets/myIcons/myapp_icon.svg",
+      width: iconSize,
+      height: iconSize,
+      color: color,
+    )
+  );
+
+  
+
 
   Widget searchIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
     onPressed: onPressed,
     iconSize: iconSize,
     icon: SvgPicture.asset(
-      "assets/iconsSVG/search-outline.svg",
+      "assets/iconsSVG/search.svg",
       width: iconSize,
       height: iconSize,
       // fit: BoxFit.fill,
@@ -63,11 +87,11 @@ class AppIcons {
     )
   );
 
-  Widget type2({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
+  Widget homeIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
     onPressed: onPressed,
     iconSize: iconSize,
     icon: SvgPicture.asset(
-      "assets/iconsSVG/bath.svg",
+      "assets/iconsSVG/home.svg",
       width: iconSize,
       height: iconSize,
       // fit: BoxFit.fill,
@@ -75,11 +99,11 @@ class AppIcons {
     )
   );
 
-  Widget type3({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
+  Widget newRoomIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
     onPressed: onPressed,
     iconSize: iconSize,
     icon: SvgPicture.asset(
-      "assets/iconsSVG/bath-off.svg",
+      "assets/myIcons/addRoom.svg",
       width: iconSize,
       height: iconSize,
       // fit: BoxFit.fill,
@@ -87,11 +111,11 @@ class AppIcons {
     )
   );
 
-  Widget type4({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
+  Widget favoritesIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
     onPressed: onPressed,
     iconSize: iconSize,
     icon: SvgPicture.asset(
-      "assets/myIcons/amoblada.svg",
+      "assets/iconsSVG/bookmarks.svg",
       width: iconSize,
       height: iconSize,
       // fit: BoxFit.fill,
@@ -99,11 +123,11 @@ class AppIcons {
     )
   );
 
-  Widget type5({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
+  Widget settingIcon({void Function()? onPressed,  Color? color, double? iconSize}) => IconButton(
     onPressed: onPressed,
     iconSize: iconSize,
     icon: SvgPicture.asset(
-      "assets/iconsSVG/bed.svg",
+      "assets/iconsSVG/settings.svg",
       width: iconSize,
       height: iconSize,
       // fit: BoxFit.fill,
