@@ -24,7 +24,7 @@ class CategoriesHome extends StatelessWidget {
         const Divider(),
 
         SizedBox(
-          height: ScreenSize.heightMultiplier * 20.0,
+          height: ScreenSize.heightMultiplier * 25.0,
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -45,6 +45,7 @@ class CategoriesHome extends StatelessWidget {
                           padding: EdgeInsets.only(top: ScreenSize.heightMultiplier * 1.8, bottom: ScreenSize.heightMultiplier * 0.50, right: ScreenSize.widthMultiplier * 2.1),
                           child: Text(
                             categorys[index],
+                            maxLines: 1,
                             style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontSize: ScreenSize.widthMultiplier * 3.7,
                               fontWeight: FontWeight.bold

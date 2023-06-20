@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uis_house/app/presentation/views/home/categories_home_view.dart';
 import 'package:uis_house/app/presentation/views/home/home_view.dart';
 import 'package:uis_house/app/presentation/views/home/lastest_post_view.dart';
-import 'package:uis_house/app/presentation/views/home/search_bar_view.dart';
+import 'package:uis_house/app/presentation/views/home/search_bar_view.dart' as searchWidget;
 import 'package:uis_house/app/presentation/widgets/categories_list.dart';
 import 'package:uis_house/app/presentation/widgets/top_screen.dart';
 
@@ -26,11 +26,11 @@ class IndexPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget homeScreens =  Column(
-      children: const [
+    Widget homeScreens = const Column(
+      children: [
         TopWelcome(),
         SizedBox(height: 40.0),
-        SearchBar(),
+        searchWidget.SearchBar(),
         SizedBox(height: 40.0),
         CategoriesHome(),
         SizedBox(height: 10.0),
